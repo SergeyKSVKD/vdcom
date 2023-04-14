@@ -1,0 +1,23 @@
+.layout {
+    display: grid;
+    justify-items: center;
+    align-items: start;
+    grid-template-columns: minmax(340px, 1920px);
+    grid-template-rows: max-content 1fr;
+    gap: 30px;
+    min-height: 100vh;
+    grid-template-areas: 
+    "footer"
+    "main"
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    width: 100vw;
+    grid-area: footer;
+    padding: 10px 30px;
+}
+.main {
+    grid-area: main;
+}

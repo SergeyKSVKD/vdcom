@@ -1,0 +1,10 @@
+{
+    "users": [
+      { "id": 1, "username": "ivanov.iv", "password": "vdcom1" },
+      { "id": 2, "username": "petrov.sa", "password": "vdcom2" },
+      { "id": 3, "username": "vasechkin.uv", "password": "vdcom3" }
+    ],
+    "contacts": [
+      { "id": 1, "body": "some comment", "postId": 1 }
+    ]
+  }
