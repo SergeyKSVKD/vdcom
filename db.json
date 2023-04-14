@@ -5,6 +5,30 @@
       { "id": 3, "username": "vasechkin.uv", "password": "vdcom3", "role": "moderator"  }
     ],
     "contacts": [
-      { "id": 1, "body": "some comment", "postId": 1 }
+      { "id": 1, "ARD": "23/06/22", "email": "email1@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street"},
+      { "id": 2, "ARD": "23/06/22", "email": "email2@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 3, "ARD": "23/06/22", "email": "email3@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 4, "ARD": "23/06/22", "email": "email4@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 5, "ARD": "23/06/22", "email": "email5@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 6, "ARD": "23/06/22", "email": "email6@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 7, "ARD": "23/06/22", "email": "email7@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 8, "ARD": "23/06/22", "email": "email8@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 9, "ARD": "23/06/22", "email": "email9@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 10, "ARD": "23/06/22", "email": "email10@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 11, "ARD": "23/06/22", "email": "email11@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 12, "ARD": "23/06/22", "email": "email12@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 13, "ARD": "23/06/22", "email": "email13@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 14, "ARD": "23/06/22", "email": "email14@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 15, "ARD": "23/06/22", "email": "email15@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 16, "ARD": "23/06/22", "email": "email16@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 17, "ARD": "23/06/22", "email": "email17@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 18, "ARD": "23/06/22", "email": "email18@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 19, "ARD": "23/06/22", "email": "email19@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 20, "ARD": "23/06/22", "email": "email20@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 21, "ARD": "23/06/22", "email": "email21@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 22, "ARD": "23/06/22", "email": "email22@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 23, "ARD": "23/06/22", "email": "email23@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 24, "ARD": "23/06/22", "email": "email24@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" },
+      { "id": 25, "ARD": "23/06/22", "email": "email25@gmail.com", "clientName": "Entity name", "phone": "7674822811", "TRN/PPSN": "654321", "companyNumber": "123456789", "address": "10 Name Street" }
     ]
   }

@@ -16,7 +16,7 @@
     justify-content: space-between;
     width: 100vw;
     grid-area: footer;
-    padding: 10px 30px;
+    padding: 10px 40px;
 }
 
 .navbar {
@@ -31,7 +31,11 @@
 }
 
 .main {
+    display: grid;
+    align-items: center;
+    justify-items: start;
     grid-area: main;
+    padding: 0 40px 0 0;
 }
 
 .footer__user__container {

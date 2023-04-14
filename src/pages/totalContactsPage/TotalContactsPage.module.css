@@ -1,0 +1,54 @@
+.contacts__container {
+    display: grid;
+    width: calc(100vw - 250px);
+    align-items: center;
+    justify-content: start;
+    background-color: var(--secondary);
+    padding: 10px 20px;
+}
+
+.contacts__list {
+    list-style: none;
+    background-color: var(--secondary);
+}
+
+.contacts {
+    display: flex;
+    padding: 0 25px;
+    border: 2px solid #666666;
+    margin: 20px 0;
+    gap: 20px;
+    background-color: var(--primary);
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.pageBtn {
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    width: 38px;
+    height: 28px;
+    border-radius: 4px;
+    color: var(--white);
+    font-weight: var(--fw-bold);
+    background-color: var(--secondary);
+    margin-right: 3px;
+    cursor: pointer;
+}
+
+.pageBtn:hover {
+    background-color: var(--light-orange);
+}
+
+.activePageBtn {
+    background-color: var(--light-orange) !important;
+}
+
+.rotate {
+    transform: rotate(-180deg);
+}
+

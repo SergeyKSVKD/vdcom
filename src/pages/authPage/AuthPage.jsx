@@ -48,14 +48,14 @@ export const AuthPage = () => {
     const submitHandler = async () => {
         const response = await fetch(`${url}/users`)
             .then((res) => res.json())
-        const validUser = response.find((el) => el.username === authState.name)
+        const validUser = response.find((el) => el.username === authState.name.toLowerCase())
         if (!validUser) {
             return alert('Такого пользователя не существует')
         }
         if (validUser.password !== authState.password) {
             return alert('Неправильный пароль')
         }
-        localStorage.setItem('auth', [authState.name, validUser.role])
+        localStorage.setItem('auth', [authState.name.toLowerCase(), validUser.role])
         navigate("/totalcontacts")
     }
 

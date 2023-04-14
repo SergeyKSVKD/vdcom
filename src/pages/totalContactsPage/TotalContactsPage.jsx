@@ -1,11 +1,95 @@
 import styles from './TotalContactsPage.module.css'
 import cn from 'classnames'
-import {useState, useEffect} from 'react'
+import { useState, useEffect, useRef } from 'react'
+import { ReactComponent as ArrowIcon } from './assets/arrow.svg'
 
 export const TotalContactsPage = () => {
+    const url = 'http://localhost:3001'
+    const startPage = useRef()
+    const [contactsList, setContactsList] = useState([])
+    const [pagination, setPagination] = useState(null)
+    const [activePage, setActivePage] = useState(1)
+    const [contacts, setContacts] = useState('')
+
+    const getContacts = async () => {
+        const response = await fetch(`${url}/contacts`)
+            .then((res) => res.json())
+        setContactsList(response)
+        setContacts(response.slice(0, 5))
+    }
+
+    useEffect(() => {
+        getContacts()
+    }, [])
+
+    useEffect(() => {
+        const PageBtn = ({ page }) => {
+            return <div
+                className={cn(styles.pageBtn, { [styles.activePageBtn]: activePage === page })}
+                onClick={() => {
+                    setActivePage(page)
+                    setContacts(contactsList.slice((page - 1) * 5, (page - 1) * 5 + 5))
+                    startPage.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }}
+            >{page}</div>
+        }
+        const pageCount = Math.ceil(contactsList.length / 5)
+        const arr = new Array(pageCount).fill({})
+        const arrowNextHandler = () => {
+            if (activePage === pageCount) {
+                return
+            }
+            let page = activePage + 1
+            setContacts(contactsList.slice((page - 1) * 5, (page - 1) * 5 + 5))
+            setActivePage(activePage + 1)
+            startPage.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+        const arrowPreviousHandler = () => {
+            if (activePage === 1) {
+                return
+            }
+            let page = activePage - 1
+            setContacts(contactsList.slice((page - 1) * 5, (page - 1) * 5 + 5))
+            setActivePage(activePage - 1)
+            startPage.current.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+
+        const pagination = arr.map((_, i) => {
+            return <PageBtn key={i + 1} page={i + 1} />
+        })
+        setPagination(<>
+            <div className={styles.pageBtn}
+                onClick={() => arrowPreviousHandler()}
+            ><ArrowIcon className={styles.rotate} /></div>
+            {pagination}
+            <div className={styles.pageBtn}
+                onClick={() => arrowNextHandler()}
+            ><ArrowIcon /></div>
+        </>)
+    }, [contactsList, activePage])
 
     return <>
-        <h1>TotalContactsPage</h1>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus voluptas doloremque hic aliquid, quasi cum eaque. A saepe beatae possimus aspernatur autem enim delectus minima non consequuntur expedita recusandae optio eaque tenetur modi facilis maxime culpa doloribus commodi suscipit sunt odit sequi, excepturi esse. Tempora unde numquam nihil labore nobis mollitia harum doloremque. Perferendis commodi pariatur adipisci dolorem numquam, sunt nostrum quibusdam mollitia molestias aut! Blanditiis itaque consequatur tenetur deserunt, vitae autem architecto facere quisquam, ducimus, harum eum dolore saepe impedit ut voluptatum molestias. Commodi laborum architecto id rerum repellendus porro quae reiciendis veniam. Deserunt quia delectus, at fugit voluptatum ipsum, iste suscipit quos labore rem odit assumenda fuga explicabo totam maxime veniam laborum unde recusandae molestias vel. Debitis molestias totam illum et. Repudiandae impedit deserunt animi ipsum. Consequuntur tempora dolores quam eveniet earum consequatur repellat ratione tenetur. Laboriosam doloribus debitis aspernatur assumenda! Doloribus repellendus, fuga, totam ea rerum omnis, quod iusto quia deleniti hic minima quas nulla. Temporibus debitis suscipit ipsum a ipsam est expedita optio id deleniti error, quia omnis aspernatur illum nemo ea ullam, velit ratione similique laudantium in, sapiente repellendus. Distinctio laboriosam, similique consequuntur dolore deserunt earum. Velit, aliquam? Sunt, corrupti natus voluptas repellendus exercitationem sint? Sit delectus nisi ea numquam minus tenetur non odio iure nesciunt autem incidunt eveniet, fuga suscipit, exercitationem quasi rerum saepe, atque adipisci soluta dolorem minima officia veniam harum. Modi facere sunt eius. Eius perspiciatis voluptatem, iusto velit nobis, natus eos veniam aliquid itaque nulla esse at doloremque est, iure cumque incidunt debitis! Ipsa rerum, est provident fuga incidunt, debitis laboriosam, repellendus dolor mollitia inventore alias iusto eum exercitationem et repellat explicabo quidem atque recusandae beatae accusamus nihil. Aperiam labore perferendis numquam veritatis, explicabo velit. Error rem voluptatibus mollitia odit rerum fugit, ducimus praesentium consectetur quo consequatur, animi nesciunt, molestiae harum nulla pariatur. Earum doloremque nostrum ad modi similique, culpa tenetur illo cum numquam nisi ex esse a id eaque quis minima ut deleniti sit ullam excepturi? Cupiditate dolorem tenetur reiciendis aspernatur, inventore perferendis excepturi labore exercitationem perspiciatis eius temporibus, ipsum nisi aliquam at dicta dolore, voluptatem modi quasi saepe corporis! Quia id neque repellendus illo! Tenetur sunt saepe maxime non sint in sed cum autem nostrum obcaecati, blanditiis necessitatibus impedit at accusamus dolore voluptatem eum! Assumenda minus magni itaque rerum et debitis non aspernatur beatae molestiae est qui asperiores, ratione eum? Id, quos? Itaque, vel. Praesentium tempore quis possimus reprehenderit. Vero consequatur voluptatem, numquam provident eius quam sit repudiandae quaerat consectetur tempore nostrum, asperiores facere ipsa sed sapiente eos animi officia nulla unde ratione aliquam libero culpa! Harum incidunt aliquam alias voluptatem natus nisi consectetur impedit repellat, adipisci qui quis neque odio sint ea nulla necessitatibus doloribus ad! Maxime asperiores eligendi velit, necessitatibus excepturi aspernatur ea libero quae eum atque ex mollitia. Asperiores necessitatibus exercitationem minus debitis sequi neque commodi culpa accusantium praesentium, harum tempore similique repellendus placeat inventore iste natus porro vel. Commodi quidem quam iste ab, totam praesentium quas accusantium molestias similique, quis temporibus, ratione alias minima incidunt?</p>
+        <br ref={startPage} />
+        <div className={styles.contacts__container}>
+            <h1>TotalContactsPage</h1>
+            <ul className={styles.contacts__list}>
+                {contacts ?
+                    contacts.map((item) => <li key={item.id} className={styles.contacts}>
+                        <p>{item.id}</p>
+                        <p>{item.email}</p>
+                        <p>{item.clientName}</p>
+                        <p>{item.phone}</p>
+                        <p>{item.PPSN}</p>
+                        <p>{item.ARD}</p>
+                        <p>{item.companyNumber}</p>
+                        <p>{item.address}</p>
+                    </li>) : "preload"
+                }
+                <div className={styles.pagination}>
+                    {pagination}
+                </div>
+            </ul>
+        </div>
+
     </>
 }
