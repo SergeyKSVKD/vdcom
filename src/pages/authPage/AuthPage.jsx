@@ -18,7 +18,8 @@ export const AuthPage = () => {
 
     const initialForm = {
         name: "",
-        password: ""
+        password: "",
+        role: ""
     }
 
     const [authState, setAuthState] = useState(initialForm)
@@ -54,7 +55,7 @@ export const AuthPage = () => {
         if (validUser.password !== authState.password) {
             return alert('Неправильный пароль')
         }
-        localStorage.setItem('auth', authState.name)
+        localStorage.setItem('auth', [authState.name, validUser.role])
         navigate("/totalcontacts")
     }
 
