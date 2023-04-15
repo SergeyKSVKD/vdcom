@@ -2,6 +2,7 @@ import styles from './TotalContactsPage.module.css'
 import cn from 'classnames'
 import { useState, useEffect, useRef } from 'react'
 import { ReactComponent as ArrowIcon } from './assets/arrow.svg'
+import { ReactComponent as AddIcon } from './assets/add.svg'
 import { useSelector, useDispatch } from 'react-redux'
 import { addContacts, deleteContacts } from './contactsSlice'
 
@@ -25,7 +26,7 @@ export const TotalContactsPage = () => {
 
     useEffect(() => {
         getContacts()
-    }, [])
+    }, [contacts])
 
     useEffect(() => {
         const PageBtn = ({ page }) => {
@@ -75,14 +76,22 @@ export const TotalContactsPage = () => {
 
     useEffect(() => {
         if (contacts) {
-            setContactsList(contacts.slice(0, 5))
+            let page = activePage - 1
+            if (contacts.slice(page * 5, page * 5 + 5).length === 0) {
+                page = activePage - 2
+                setContactsList(contacts.slice(page * 5, page * 5 + 5))
+            }
+            setContactsList(contacts.slice(page * 5, page * 5 + 5))
         }
     }, [contacts])
 
     return <>
         <br ref={startPage} />
         <div className={styles.contacts__container}>
-            <h1>TotalContactsPage</h1>
+            <div className={styles.contacts__title}>
+                <h1>TotalContactsPage</h1>
+                <div className={styles.addContacts__button}><AddIcon />ADD</div>
+            </div>
             <ul className={styles.contacts__list}>
                 <div className={styles.contacts__options}>
                     <span>Client ID</span>
@@ -95,7 +104,9 @@ export const TotalContactsPage = () => {
                     <span>Company Address</span>
                 </div>
                 {contactsList ?
-                    contactsList.map((item) => <li key={item.id} className={styles.contacts}>
+                    contactsList.map((item) => <li key={item.id} className={styles.contacts}
+                        data-id={item.id}
+                    >
                         <span>{item.id}</span>
                         <span>{item.email}</span>
                         <span>{item.clientName}</span>
@@ -104,6 +115,15 @@ export const TotalContactsPage = () => {
                         <span>{item.ARD}</span>
                         <span>{item.companyNumber}</span>
                         <span>{item.address}</span>
+                        <div className={styles.remove}
+                            onClick={async (e) => {
+                                const response = await fetch(`${url}/contacts/${e.target.parentNode.dataset.id}`, {
+                                    method: 'DELETE',
+                                })
+                                    .then((res) => res.json())
+                                dispatch(deleteContacts())
+                            }}
+                        >&#x2716;</div>
                     </li>) : "preload"
                 }
                 <div className={styles.pagination}>
@@ -111,8 +131,8 @@ export const TotalContactsPage = () => {
                 </div>
             </ul>
         </div>
-        <button onClick={() => {dispatch(deleteContacts())
-        console.log(contacts);
+        <button className={styles.addContacts__button} onClick={() => {
+            dispatch(deleteContacts())
         }}>delete</button>
     </>
 }

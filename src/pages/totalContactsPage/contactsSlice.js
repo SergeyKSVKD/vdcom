@@ -10,7 +10,7 @@ const contactsSlice = createSlice({
         deleteContacts: (state, _) => {
             const end = state.length
             state.splice(0, end)
-        }
+        },
     }
 })
 
