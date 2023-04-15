@@ -7,10 +7,13 @@ import { ReactComponent as LogoutIcon } from './assets/logout.svg';
 import { ReactComponent as ContactsIcon } from './assets/contacts.svg';
 import { ReactComponent as CalendarIcon } from './assets/calendar.svg';
 import { ReactComponent as ProjectIcon } from './assets/project.svg';
+import { useDispatch } from 'react-redux'
+import { deleteContacts } from '../../pages/totalContactsPage/contactsSlice'
 
 export const Layout = ({ children }) => {
     const navigate = useNavigate()
     const [activeMenu, setActiveMenu] = useState('totalcontacts')
+    const dispatch = useDispatch()
 
     useEffect(() => {
         if (!localStorage.getItem('auth')) {
@@ -60,10 +63,11 @@ export const Layout = ({ children }) => {
                     ><div className={styles.menu}><ProjectIcon />Project Report</div></li>
                 </ul>
                 <div className={styles.logout}
-                onClick={() => {
-                    localStorage.removeItem("auth")
-                    navigate('/auth')
-                }}
+                    onClick={() => {
+                        localStorage.removeItem("auth")
+                        navigate('/auth')
+                        dispatch(deleteContacts())
+                    }}
                 ><LogoutIcon />Log out</div>
             </nav>
             <div className={styles.main}>
