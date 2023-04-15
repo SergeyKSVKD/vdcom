@@ -13,6 +13,26 @@ export const TotalContactsPage = () => {
     const [pagination, setPagination] = useState(null)
     const [activePage, setActivePage] = useState(1)
 
+    const [visibleAddForm, setVisibleAddForm] = useState(false)
+    const [formValue, setFormValue] = useState({
+        id: '',
+        ARD: "23/06/22",
+        email: '',
+        clientName: "Entity name",
+        phone: "7674822811",
+        TRN: "654321",
+        companyNumber: "123456789",
+        address: "10 Name Street"
+    })
+
+    function formHandler(e) {
+        setFormValue((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+            email: `email${e.target.value}@gmail.com`
+        }))
+    }
+
     const contacts = useSelector(state => state.contacts)
     const dispatch = useDispatch()
 
@@ -90,7 +110,9 @@ export const TotalContactsPage = () => {
         <div className={styles.contacts__container}>
             <div className={styles.contacts__title}>
                 <h1>TotalContactsPage</h1>
-                <div className={styles.addContacts__button}><AddIcon />ADD</div>
+                <div className={styles.addContacts__button}
+                    onClick={() => setVisibleAddForm(!visibleAddForm)}
+                ><AddIcon />ADD</div>
             </div>
             <ul className={styles.contacts__list}>
                 <div className={styles.contacts__options}>
@@ -117,7 +139,7 @@ export const TotalContactsPage = () => {
                         <span>{item.address}</span>
                         <div className={styles.remove}
                             onClick={async (e) => {
-                                const response = await fetch(`${url}/contacts/${e.target.parentNode.dataset.id}`, {
+                                await fetch(`${url}/contacts/${e.target.parentNode.dataset.id}`, {
                                     method: 'DELETE',
                                 })
                                     .then((res) => res.json())
@@ -134,5 +156,45 @@ export const TotalContactsPage = () => {
         <button className={styles.addContacts__button} onClick={() => {
             dispatch(deleteContacts())
         }}>delete</button>
+
+        {visibleAddForm ? <div className={styles.addContacts__container}>
+            <div className={styles.inputContainer}>
+                <input
+                    type='text'
+                    autoComplete="off"
+                    placeholder="Введите id"
+                    onChange={formHandler}
+                    name="id"
+                    value={formValue.id}
+                />
+            </div>
+            <button className={styles.addContacts__button} onClick={async () => {
+                const id = formValue.id
+                const email = formValue.email
+                const response = await fetch(`${url}/contacts/`)
+                    .then((res) => res.json())
+                if (response.find(item => item.id === id)) {
+                    return alert(`Контакт с идентификатором ${id} уже добавлен`)
+                }
+                setFormValue((prevState) => ({
+                    ...prevState,
+                    id,
+                    email,
+                }))
+                const body = JSON.stringify(formValue)
+                console.log(body);
+                await fetch(`${url}/contacts/`, {
+                    method: 'POST',
+                    body,
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                })
+                dispatch(deleteContacts())
+                setActivePage(Math.ceil(contacts.length / 5))
+            }}>ADD</button>
+        </div > : null
+        }
     </>
 }
